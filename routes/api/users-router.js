@@ -1,8 +1,8 @@
 import express from "express";
 
-import authController from "../../controllers/users-controller.js";
+import usersController from "../../controllers/users-controller.js";
 
-import { authenticate, isEmptyBody } from "../../middlewares/index.js";
+import { authenticate, isEmptyBody, upload } from "../../middlewares/index.js";
 
 import { validateBody } from "../../decorators/index.js";
 
@@ -14,18 +14,25 @@ usersRouter.post(
   "/register",
   isEmptyBody,
   validateBody(userRegisterSchema),
-  authController.register
+  usersController.register
 );
 
 usersRouter.post(
   "/login",
   isEmptyBody,
   validateBody(userLoginSchema),
-  authController.login
+  usersController.login
 );
 
-usersRouter.get("/current", authenticate, authController.getCurrent);
+usersRouter.get("/current", authenticate, usersController.getCurrent);
 
-usersRouter.post("/logout", authenticate, authController.logout);
+usersRouter.post("/logout", authenticate, usersController.logout);
+
+usersRouter.patch(
+  "/avatars",
+  upload.single("avatar"),
+  authenticate,
+  usersController.changeAvatar
+);
 
 export default usersRouter;
