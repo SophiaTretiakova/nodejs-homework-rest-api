@@ -5,7 +5,6 @@ import { ctrlWrapper } from "../decorators/index.js";
 import { HttpError } from "../helpers/index.js";
 
 const getAll = async (req, res, next) => {
-
   const { _id: owner } = req.user;
   const { page = 1, limit = 20, ...filterParams } = req.query;
   const skip = (page - 1) * limit;
@@ -42,9 +41,7 @@ const getById = async (req, res, next) => {
 const add = async (req, res, next) => {
   const { _id: owner } = req.user;
   try {
-
     const result = await Contact.create({ ...req.body, owner });
-
 
     res.status(201).json(result);
   } catch (error) {
