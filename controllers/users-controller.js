@@ -153,9 +153,9 @@ const verify = async (req, res, next) => {
       verify: true,
       verificationToken: "1",
     });
+
     res.json({ message: "Verification successful" });
   } catch (error) {
-    console.log(error);
     next(error);
   }
 };
