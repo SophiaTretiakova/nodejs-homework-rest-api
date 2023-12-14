@@ -35,4 +35,8 @@ usersRouter.patch(
   usersController.changeAvatar
 );
 
+usersRouter.get("/verify/:verificationToken", usersController.verify);
+
+usersRouter.post("/verify", isEmptyBody, usersController.resendVerification);
+
 export default usersRouter;
