@@ -5,7 +5,7 @@ import path from "path";
 import gravatar from "gravatar";
 import Jimp from "jimp";
 import { nanoid } from "nanoid";
-import { User, userEmailSchema } from "../models/User.js";
+import User, { userEmailSchema } from "../models/User.js";
 import { sendEmail } from "../helpers/index.js";
 import { ctrlWrapper } from "../decorators/index.js";
 
